@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class GestorProperties {
 
-    private File f;
+   private File f;
     private Properties props;
 
     public GestorProperties(File f) {
@@ -24,11 +24,11 @@ public class GestorProperties {
         }
     }
 
-    public String LeerPropiedad(String c) {
+    public String leerPropiedad(String c) {
 
         try {
             if (props.getProperty(c) != null)
-                return props.getProperty("c");
+                return props.getProperty(c);
 
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -36,10 +36,16 @@ public class GestorProperties {
         return null;
     }
 
-    public static void mostrarPros() {
-
-
-
+    public void mostrarPropiedades(){
+        try {
+            for (Object clave : props.keySet()) {
+                String valor = props.getProperty((String) clave);
+               // System.out.println(clave + " = " + valor);
+                System.out.println(clave);            }
+        } catch (Exception e) {
+            System.err.println("Error al mostrar las propiedades: " + e.getMessage());
+        }
 
     }
+
 }
