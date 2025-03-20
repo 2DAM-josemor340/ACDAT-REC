@@ -11,7 +11,7 @@ public class App {
         String ruta = "res" + File.separator + archivo;
         try {
             File file = new File(ruta);
-            if (file.exists()) {
+            if (file.exists() && file.isFile()) {
                 System.out.println("El fichero existe y se llama " + file.getName());
 
                 GestorProperties gestor = new GestorProperties(file);
