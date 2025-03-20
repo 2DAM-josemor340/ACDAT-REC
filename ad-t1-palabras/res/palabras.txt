@@ -1,0 +1,14 @@
+perro
+gato
+leon
+tigre
+jirafa
+caballo
+cebra
+perro
+gato
+pato
+caballo
+perro
+caballo
+
