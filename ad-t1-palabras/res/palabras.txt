@@ -1,14 +1,14 @@
-perro
-gato
-leon
-tigre
-jirafa
-caballo
-cebra
-perro
-gato
-pato
-caballo
-perro
-caballo
+perro,gato, leon, tigre, jirafa, caballo, cebra, pato
+gato,perro, caballo, pato
+leon,tigre, jirafa, cebra, caballo, perro, gato, pato
+tigre,jirafa, cebra, caballo, perro, gato, pato
+jirafa,caballo, cebra, perro, gato, pato
+caballo,cebra, perro, gato, pato
+cebra,caballo, perro, gato, pato
+perro, gato, caballo, pato
+gato,perro, caballo, pato
+pato,perro, gato, caballo
+caballo,perro, gato, pato
+perro, gato, pato,
+caballo, gato, pato
 
