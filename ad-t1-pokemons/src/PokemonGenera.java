@@ -7,12 +7,17 @@ public class PokemonGenera {
         String pokemonTxt = "res" + File.separator + "Pokemon.txt";
         String pokemonsDat = "res" + File.separator + "Pokemons.dat";
 
-        File file = new File(pokemonTxt);
+        File fileTxt = new File(pokemonTxt);
 
-        //Comprobar si existe y es un archivo, no es necesario usar arraylist, se puede escribir directamente
-        if (file.exists() && file.isFile()) {
-            System.out.println("El archivo Pokemons.txt existe.");
-            try (BufferedReader br = new BufferedReader(new FileReader(pokemonTxt))) {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(fileTxt));
+            ObjectOutputStream foutput = new ObjectOutputStream(new FileOutputStream(pokemonsDat));
+
+            //Comprobar si existe y es un archivo, no es necesario usar arraylist, se puede escribir directamente
+            if (fileTxt.exists() && fileTxt.isFile()) {
+                System.out.println("El archivo Pokemons.txt existe.");
+
+
                 String linea;
                 //Leer archivo Pokemon.txt
                 while ((linea = br.readLine()) != null) {
@@ -25,21 +30,22 @@ public class PokemonGenera {
                         boolean evoluciona = Boolean.parseBoolean(datos[4]);
 
                         Pokemon pok = new Pokemon(nombre, vida, ataque, defensa, evoluciona);
+                        foutput.writeObject(pok);
+                        System.out.println("Objeto Pokemon " + pok.getNombre() + ".Insertado en el archivo Pokemons.dat correctamente.");
 
-                        try (ObjectOutputStream foutput = new ObjectOutputStream(new FileOutputStream(pokemonsDat))) {
-                            foutput.writeObject(pok);
-                            System.out.println("Objeto Pokemon " + pok.getNombre() + ".Insertado en el archivo Pokemons.dat correctamente.");
-                        } catch (IOException e) {
-                            System.err.println("Error al escribir el archivo Pokemons.dat: " + e.getMessage());
-                        }
                     }
                 }
                 System.out.println("Pokémons cargados correctamente desde el archivo.");
-            } catch (IOException | NumberFormatException e) {
-                System.err.println("Error al leer el archivo: " + e.getMessage());
+                br.close();
+                foutput.close();
+            } else {
+                System.out.println("El archivo Pokemons.txt no existe.");
             }
-        } else {
-            System.out.println("El archivo Pokemons.txt no existe.");
+        } catch (IOException | NumberFormatException e) {
+            System.err.println("Error al leer el archivo: " + e.getMessage());
         }
+
+
     }
+
 }
