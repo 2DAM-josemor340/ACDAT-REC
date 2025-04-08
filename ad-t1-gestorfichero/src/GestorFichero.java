@@ -44,13 +44,13 @@ public class GestorFichero {
     //Buscar un registro en el fichero TXT
     public boolean buscar(String registro) {
         BufferedReader br = null;
+        boolean encontrado = false;
         try {
             br = new BufferedReader(new FileReader(fichero));
             String linea;
-            while ((linea = br.readLine()) != null) {
+            while ((linea = br.readLine()) != null && !encontrado) {
                 if (linea.contains(registro)) {
-                    br.close();
-                    return true;
+                    encontrado = true;
                 }
             }
             br.close();
@@ -58,7 +58,7 @@ public class GestorFichero {
         } catch (IOException e) {
             System.err.println("Error al leer el fichero: " + e.getMessage());
         }
-        return false;
+        return encontrado;
     }
 
     //Actualizar un registro (cadena origen por cadena destino) en el fichero TXT sin usar listas
