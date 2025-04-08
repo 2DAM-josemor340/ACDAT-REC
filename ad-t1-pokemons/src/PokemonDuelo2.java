@@ -34,18 +34,22 @@ public class PokemonDuelo2 {
         }
         //Leemos el fichero en busca de los pokemons
         Pokemon[] pokemons = new Pokemon[2];
-        try (ObjectInputStream finput = new ObjectInputStream(new FileInputStream(file))) {
-            while (true) {
+        ObjectInputStream finput = null;
+        try {
+            finput = new ObjectInputStream(new FileInputStream(file));
+
+            //Leemos
+            while (pokemons[0] == null || pokemons[1] == null) {
                 Pokemon p = (Pokemon) finput.readObject();
                 if (p.getNombre().equalsIgnoreCase(pok1)) {
                     pokemons[0] = p;
                 } else if (p.getNombre().equalsIgnoreCase(pok2)) {
                     pokemons[1] = p;
                 }
-                if (pokemons[0] != null && pokemons[1] != null) {
-                    return pokemons;
-                }
             }
+            //Cerramos el flujo
+            finput.close();
+            return pokemons;
         } catch (EOFException e) {
             System.out.println("Uno o ambos Pokémon no fueron encontrados. Fin del juego.");
         } catch (IOException | ClassNotFoundException e) {
