@@ -18,7 +18,7 @@ public class GestorFichero {
             while ((linea = br.readLine()) != null) {
                 System.out.println(linea);
             }
-            br.close();
+            //br.close();
         } catch (FileNotFoundException e) {
             System.err.println("Error: El fichero no existe.");
         } catch (IOException e) {
@@ -48,6 +48,7 @@ public class GestorFichero {
             String linea;
             while ((linea = br.readLine()) != null) {
                 if (linea.contains(registro)) {
+                    br.close();
                     return true;
                 }
             }
@@ -76,16 +77,16 @@ public class GestorFichero {
                     contador++;
                 }
                 bw.write(linea);
-
             }
+            bw.close();
+            br.close();
         } catch (IOException e) {
             System.err.println("Error al actualizar el fichero: " + e.getMessage());
         }
         if (contador > 0) {
             aux.renameTo(fichero);
+            aux.delete();
         }
-        bw.close();
-        br.close();
         return contador;
     }
 
@@ -107,15 +108,16 @@ public class GestorFichero {
                     contador++;
                 }
             }
+            bw.close();
+            br.close();
 
         } catch (IOException e) {
             System.err.println("Error al eliminar en el fichero: " + e.getMessage());
         }
         if (contador > 0) {
             aux.renameTo(fichero);
+            aux.delete();
         }
-        bw.close();
-        br.close();
         return contador;
     }
 }
