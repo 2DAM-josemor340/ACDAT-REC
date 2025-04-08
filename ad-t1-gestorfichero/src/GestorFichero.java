@@ -29,15 +29,16 @@ public class GestorFichero {
     //Insertar un nuevo registro en el fichero TXT
     public boolean insertar(String registro) {
         BufferedWriter bw = null;
+        boolean vresult = false;
         try {
             bw = new BufferedWriter(new FileWriter(fichero, true));
             bw.write("\n" + registro);
             bw.close();
-            return true;
+            vresult = true;
         } catch (IOException e) {
             System.err.println("Error al escribir en el fichero: " + e.getMessage());
         }
-        return false;
+        return vresult;
     }
 
     //Buscar un registro en el fichero TXT
