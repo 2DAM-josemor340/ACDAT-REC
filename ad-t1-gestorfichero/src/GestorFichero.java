@@ -18,7 +18,7 @@ public class GestorFichero {
             while ((linea = br.readLine()) != null) {
                 System.out.println(linea);
             }
-            //br.close();
+            br.close();
         } catch (FileNotFoundException e) {
             System.err.println("Error: El fichero no existe.");
         } catch (IOException e) {
@@ -29,27 +29,28 @@ public class GestorFichero {
     //Insertar un nuevo registro en el fichero TXT
     public boolean insertar(String registro) {
         BufferedWriter bw = null;
+        boolean vresult = false;
         try {
             bw = new BufferedWriter(new FileWriter(fichero, true));
             bw.write("\n" + registro);
             bw.close();
-            return true;
+            vresult= true;
         } catch (IOException e) {
             System.err.println("Error al escribir en el fichero: " + e.getMessage());
         }
-        return false;
+        return vresult;
     }
 
     //Buscar un registro en el fichero TXT
     public boolean buscar(String registro) {
         BufferedReader br = null;
+        boolean encontrado = false;
         try {
             br = new BufferedReader(new FileReader(fichero));
             String linea;
             while ((linea = br.readLine()) != null) {
                 if (linea.contains(registro)) {
-                    br.close();
-                    return true;
+                    encontrado = true;
                 }
             }
             br.close();
@@ -57,7 +58,7 @@ public class GestorFichero {
         } catch (IOException e) {
             System.err.println("Error al leer el fichero: " + e.getMessage());
         }
-        return false;
+        return encontrado;
     }
 
     //Actualizar un registro (cadena origen por cadena destino) en el fichero TXT sin usar listas
@@ -84,6 +85,7 @@ public class GestorFichero {
             System.err.println("Error al actualizar el fichero: " + e.getMessage());
         }
         if (contador > 0) {
+            //fichero.delete();
             aux.renameTo(fichero);
             aux.delete();
         }
@@ -103,10 +105,40 @@ public class GestorFichero {
             String linea;
             while ((linea = br.readLine()) != null) {
                 if (!linea.contains(registro)) {
-                    bw.write(linea);
+                   bw.write(linea);
                 } else {
+                   contador++;
+                }
+            }
+           bw.close();
+           br.close();
+
+        } catch (IOException e) {
+            System.err.println("Error al eliminar en el fichero: " + e.getMessage());
+        }
+        if (contador > 0) {
+            //fichero.delete();
+            aux.renameTo(fichero);
+            aux.delete();
+        }
+        return contador;
+    }
+    public int eliminar2(String registro) throws IOException {
+        int contador = 0;
+        BufferedReader br = null;
+        BufferedWriter bw = null;
+        File aux = new File(fichero.getAbsolutePath() + ".tmp");
+
+        try {
+            br = new BufferedReader(new FileReader(fichero));
+            bw = new BufferedWriter(new FileWriter(aux));
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (linea.contains(registro)) {
+                    linea = linea.replace(registro, "");
                     contador++;
                 }
+                bw.write(linea);
             }
             bw.close();
             br.close();
@@ -115,6 +147,7 @@ public class GestorFichero {
             System.err.println("Error al eliminar en el fichero: " + e.getMessage());
         }
         if (contador > 0) {
+            //fichero.delete();
             aux.renameTo(fichero);
             aux.delete();
         }

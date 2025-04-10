@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/ACDAT-REC.iml" filepath="$PROJECT_DIR$/.idea/ACDAT-REC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ad-t-ej0/ad-t-ej0.iml" filepath="$PROJECT_DIR$/ad-t-ej0/ad-t-ej0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ad-t1-02-pokemons/ad-t1-02-pokemons.iml" filepath="$PROJECT_DIR$/ad-t1-02-pokemons/ad-t1-02-pokemons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ad-t1-gestorfichero/ad-t1-gestorfichero.iml" filepath="$PROJECT_DIR$/ad-t1-gestorfichero/ad-t1-gestorfichero.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ad-t1-palabras/ad-t1-palabras.iml" filepath="$PROJECT_DIR$/ad-t1-palabras/ad-t1-palabras.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ad-t1-pokemons/ad-t1-pokemons.iml" filepath="$PROJECT_DIR$/ad-t1-pokemons/ad-t1-pokemons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ad-t1-properties/ad-t1-properties.iml" filepath="$PROJECT_DIR$/ad-t1-properties/ad-t1-properties.iml" />
+    </modules>
+  </component>
+</project>
