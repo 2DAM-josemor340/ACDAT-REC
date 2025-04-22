@@ -27,6 +27,10 @@ public class PokemonApp {
         //Mostrar los Pokémon del tipo indicado
         gestionaPokemon.mostrarPokemons(f, tipoPokemon);
 
+       //Mostrar el contador de tipos
+       GestionaPokemon.contabilizarTipos(f);
+
+
     }
 
 }

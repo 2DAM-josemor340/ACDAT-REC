@@ -5,6 +5,8 @@ import java.util.*;
 
 public class GestionaPokemon {
 
+
+
     public void mostrarPokemons(File f, String tipo) {
         //Comprobamos si el archivo existe
         if (!f.exists()) {
@@ -35,7 +37,7 @@ public class GestionaPokemon {
                                 lista.add(nombre);
                                 Pokemon pok = new Pokemon(nombre, tipoPokemon, vida, ataque, defensa, velocidad);
                                 foutput.write(pok.getNombre() + "," + pok.getTipo() + "," + pok.getVida() + "," + pok.getAtaque() + "," + pok.getDefensa() + "," + pok.getVelocidad() + "\n");
-                                System.out.println("Objeto Pokemon " + pok.getNombre() +","+  pok.getTipo() + "," + pok.getVida() + "," + pok.getAtaque() + "," + pok.getDefensa() + "," + pok.getVelocidad() +" insertado correctamente."+"\n");
+                                System.out.println("Objeto Pokemon " + pok.getNombre() + "," + pok.getTipo() + "," + pok.getVida() + "," + pok.getAtaque() + "," + pok.getDefensa() + "," + pok.getVelocidad() + " insertado correctamente." + "\n");
                             }
                             Collections.sort(lista);
                         } catch (NumberFormatException e) {
@@ -56,11 +58,12 @@ public class GestionaPokemon {
             }
         }
     }
+
     public boolean generarFichero(String fcsv) {
 
-        File ficheroCsv = new File("res" + File.separator +fcsv);
+        File ficheroCsv = new File("res" + File.separator + fcsv);
         String ruta = ficheroCsv.getParent();
-        File ficheroDat = new File(ruta + fcsv+".dat");
+        File ficheroDat = new File(ruta + fcsv + ".dat");
         boolean resultado = false;
 
         try (BufferedReader fichero = new BufferedReader(new FileReader(ficheroCsv));
@@ -79,9 +82,9 @@ public class GestionaPokemon {
                         int velocidad = Integer.parseInt(datos[6]);
 
 
-                            Pokemon pok = new Pokemon(nombre, tipoPokemon, vida, ataque, defensa, velocidad);
-                            foutput.writeObject(pok);
-                            //System.out.println("Objeto Pokemon " + pok.getNombre() + " insertado correctamente.");
+                        Pokemon pok = new Pokemon(nombre, tipoPokemon, vida, ataque, defensa, velocidad);
+                        foutput.writeObject(pok);
+                        //System.out.println("Objeto Pokemon " + pok.getNombre() + " insertado correctamente.");
 
                     } catch (NumberFormatException e) {
                         System.err.println("Error de formato numérico en línea: " + linea);
@@ -91,7 +94,7 @@ public class GestionaPokemon {
                 }
                 linea = fichero.readLine();
             }
-            resultado= true;
+            resultado = true;
 
         } catch (IOException e) {
             System.err.println("Error al procesar el archivo: " + e.getMessage());
@@ -105,8 +108,27 @@ public class GestionaPokemon {
         return resultado;
     }
 
-    public void contabilizarTipos(File f) {
+    public static void contabilizarTipos(File f) {
+        HashMap<String, Integer> tipoCount = new HashMap<>();
 
+        try (BufferedReader fichero = new BufferedReader(new FileReader(f))) {
+            String linea = fichero.readLine();
+            while (linea  != null) {
+                String[] datos = linea.split(",");
+                if (datos.length == 7) {
+                    String [] tipos = new String[]{datos[2]};
+
+                    for (String tipo : tipos) {
+                        tipoCount.put(tipo, tipoCount.getOrDefault(tipo, 0) + 1);
+                    }
+                }
+                linea = fichero.readLine();
+            }
+        } catch (IOException e) {
+            System.err.println("Error al procesar el archivo: " + e.getMessage());
+        }
+
+        System.out.println("Conteo de tipos: " + tipoCount);
     }
 
 }
