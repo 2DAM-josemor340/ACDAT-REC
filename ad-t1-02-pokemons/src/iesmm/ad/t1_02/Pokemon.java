@@ -2,8 +2,6 @@ package iesmm.ad.t1_02;
 
 import java.io.Serializable;
 
-
-
 public class Pokemon implements Serializable {
 
     private String nombre;
