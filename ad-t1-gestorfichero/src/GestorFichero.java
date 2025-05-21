@@ -34,11 +34,11 @@ public class GestorFichero {
             bw = new BufferedWriter(new FileWriter(fichero, true));
             bw.write("\n" + registro);
             bw.close();
-<<<<<<< HEAD
+
             vresult= true;
-=======
+
             vresult = true;
->>>>>>> 97fd2271ccc498394dbdb0b934e46a80fe0aec15
+
         } catch (IOException e) {
             System.err.println("Error al escribir en el fichero: " + e.getMessage());
         }

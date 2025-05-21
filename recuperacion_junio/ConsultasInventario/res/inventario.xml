@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE catalogo [
+        <!ELEMENT catalogo (juegoMesa*, videojuego*)>
+
+        <!ELEMENT juegoMesa (titulo, stock)>
+        <!ELEMENT videojuego (titulo, plataforma, stock, imagenes)>
+
+        <!ELEMENT titulo (#PCDATA)>
+        <!ELEMENT plataforma (#PCDATA)>
+        <!ELEMENT stock (#PCDATA)>
+
+        <!ELEMENT imagenes (caratula, captura*)>
+        <!ELEMENT caratula (#PCDATA)>
+        <!ELEMENT captura (#PCDATA)>
+        ]>
+
+<catalogo>
+    <juegoMesa>
+        <titulo>MAGIA BORRAS</titulo>
+        <stock>20</stock>
+    </juegoMesa>
+    <videojuego>
+        <titulo>GHOST'N GLOBINS</titulo>
+        <plataforma>NES</plataforma>
+        <stock>5</stock>
+        <imagenes>
+            <caratula>img/ghosts-globlins.png</caratula>
+        </imagenes>
+    </videojuego>
+    <videojuego>
+        <titulo>PACMAN</titulo>
+        <plataforma>MBS</plataforma>
+        <stock>10</stock>
+        <imagenes>
+            <caratula>img/pacman.png</caratula>
+        </imagenes>
+    </videojuego>
+    <videojuego>
+        <titulo>MARIO BROS</titulo>
+        <plataforma>NES</plataforma>
+        <stock>12</stock>
+        <imagenes>
+            <caratula>img/mario-bros.png</caratula>
+            <captura>img/mario-bros-c1.png</captura>
+            <captura>img/mario-bros-c2.png</captura>
+        </imagenes>
+    </videojuego>
+</catalogo>
